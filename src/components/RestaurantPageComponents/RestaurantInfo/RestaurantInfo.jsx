@@ -1,33 +1,59 @@
 import React from "react";
-import { IoIosStar } from "react-icons/io";
+import { IoIosBicycle, IoIosPin, IoIosStar, IoIosTime } from "react-icons/io";
 
 const RestaurantInfo = ({ data }) => {
   const mainData = data.data.cards[2].card.card.info;
 
-  console.log(mainData);
   return (
-    <div className="w-full h-[200px] flex justify-center">
-      <div className="w-1/2 h-full flex flex-col items-center bg-white rounded-3xl border shadow-2xl">
-        <div className="mt-5 ml-5">
-          <h1 className="text-2xl font-bold">{mainData.name}</h1>
+    <div className="w-full flex justify-center px-4 mt-4">
+      <div className="w-full lg:w-1/2 flex flex-col bg-white rounded-xl border border-gray-200 shadow-lg p-4 sm:p-5">
+        {/* Restaurant Name */}
+        <div className="w-full">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+            {mainData.name}
+          </h1>
         </div>
-        <div className="w-11/12 border border-gray-300 h-2/4 rounded-3xl pl-4 pt-2">
-          <div className="flex items-center gap-1 tracking-tight">
+
+        {/* Rating, Cost for Two */}
+        <div className="flex items-center text-gray-700 mt-2 text-sm sm:text-base">
+          <div className="flex items-center">
             <IoIosStar className="text-white bg-green-700 rounded-full p-[2px]" />
-            <span className="font-semibold">{mainData.avgRating} </span>
-            <span className=" font-semibold ">
+            <span className="font-semibold ml-1">{mainData.avgRating}</span>
+            <span className="text-xs sm:text-sm text-gray-500 ml-1">
               ({mainData.totalRatingsString})
             </span>
-            <span className="font-semibold">
-              {" "}
-              • {mainData.costForTwoMessage}
-            </span>
           </div>
-          <div>
-            <p className="font-semibold text-sm underline text-orange-500">
-              {mainData.cuisines.join(", ")}
-            </p>
-          </div>
+          <span className="ml-2">•</span>
+          <span className="ml-2 font-semibold">
+            {mainData.costForTwoMessage}
+          </span>
+        </div>
+
+        {/* Cuisines */}
+        <div className="mt-2">
+          <p className="text-xs sm:text-sm font-semibold text-orange-500 underline">
+            {mainData.cuisines.join(", ")}
+          </p>
+        </div>
+
+        {/* Outlet and Delivery Time */}
+        <div className="mt-2 text-xs sm:text-sm text-gray-700">
+          <p className="flex items-center font-bold">
+            <IoIosPin className="text-gray-500" />
+            <span className="ml-2 font-normal">{mainData.areaName}</span>
+          </p>
+          <p className="flex items-center mt-1">
+            <IoIosTime className="text-gray-500" />
+            <span className="ml-2">{mainData.sla.slaString}</span>
+          </p>
+        </div>
+
+        {/* Distance and Delivery Fee */}
+        <div className="flex items-center mt-3 text-gray-600 border-t pt-3 text-xs sm:text-sm">
+          <IoIosBicycle className="text-gray-600" />
+          <span className="ml-2">
+            {mainData.feeDetails.message.replace(/<\/?b>/g, "")}
+          </span>
         </div>
       </div>
     </div>

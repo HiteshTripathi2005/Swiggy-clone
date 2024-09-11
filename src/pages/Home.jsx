@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FetchData } from "../fetch/FetchData";
 import FilterButtons from "../components/HomePageComponents/Groupbuttons/FilterButtons";
 import DeliveryRes from "../components/HomePageComponents/DeliveryRes/DeliveryRes";
-import Navbar from "../components/HomePageComponents/Navbar/Navbar";
 import FoodType from "../components/HomePageComponents/Foodtype/FoodType";
 import Restaurant from "../components/HomePageComponents/Restaurant/Restaurant";
 import LoadingPage from "./LoadingPage";
+import Navbar from "../components/Common/Navbar/Navbar";
 
 const Home = () => {
   const [data, setData] = useState(null);

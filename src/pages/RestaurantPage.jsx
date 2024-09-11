@@ -3,6 +3,9 @@ import { FetchMenu } from "../fetch/FetchData";
 import RestaurantInfo from "../components/RestaurantPageComponents/RestaurantInfo/RestaurantInfo";
 import { useParams } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
+import Navbar from "../components/Common/Navbar/Navbar";
+import Breadcrum from "../components/Common/breadcrum/Breadcrum";
+import Deals from "../components/RestaurantPageComponents/Deals/Deals";
 
 const RestaurantPage = () => {
   const [data, setData] = useState(null);
@@ -32,7 +35,10 @@ const RestaurantPage = () => {
 
   return (
     <div>
+      <Navbar />
+      <Breadcrum />
       <RestaurantInfo data={data} />
+      <Deals data={data} />
     </div>
   );
 };

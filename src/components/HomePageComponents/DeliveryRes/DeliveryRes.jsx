@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import { IoIosStar } from "react-icons/io";
 import { LuDot } from "react-icons/lu";
@@ -7,6 +8,13 @@ const DeliveryRes = ({ data }) => {
     data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
       ?.restaurants || [];
 
+  const navigate = useNavigate();
+
+  function handelChange(i) {
+    const dataid = restaurantdata[i].info.id;
+    navigate(`/restaurant/${dataid}`);
+  }
+
   return (
     <div className="w-full flex justify-center mt-5">
       <div className="w-[75%] grid grid-cols-4  gap-5 max-lg:grid-cols-3 max-md:grid-cols-2 ">
@@ -14,6 +22,7 @@ const DeliveryRes = ({ data }) => {
           <div
             className="w-full  hover:translate-y-0.5 hover:scale-[0.95] transition-all duration-200 cursor-pointer"
             key={i}
+            onClick={() => handelChange(i)}
           >
             <div className="w-full h-[182px] relative">
               <img

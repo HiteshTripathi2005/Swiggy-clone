@@ -42,7 +42,7 @@ const FoodType = ({ data }) => {
             </button>
           </div>
         </div>
-        <div ref={scrollContainerRef} className="flex gap-5 overflow-x-hidden ">
+        <div ref={scrollContainerRef} className="flex gap-5 overflow-x-hidden">
           {imgData.map((item, i) => (
             <img
               key={i}

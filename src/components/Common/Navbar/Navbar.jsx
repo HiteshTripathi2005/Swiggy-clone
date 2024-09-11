@@ -4,6 +4,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { IoBagOutline, IoHelpBuoy, IoLogInOutline } from "react-icons/io5";
 import { PiShoppingCart } from "react-icons/pi";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -11,7 +12,9 @@ const Navbar = () => {
       <div className="w-[80%] flex items-center justify-between max-[1200px]:w-[95%] max-[1000px]:hidden">
         <div className="flex items-center gap-12">
           <div>
-            <SwiggyLogo />
+            <NavLink to={"/"}>
+              <SwiggyLogo />
+            </NavLink>
           </div>
           <div className="flex items-center gap-4 cursor-pointer">
             <p className="font-suse text-sm border-b-2 border-black hover:border-orange-500 hover:text-orange-500 duration-200 font-bold">
