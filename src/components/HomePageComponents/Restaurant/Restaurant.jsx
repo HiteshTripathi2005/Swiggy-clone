@@ -34,7 +34,9 @@ const Restaurant = ({ data }) => {
     <div className="w-full flex justify-center mt-5">
       <div className="w-[75%] flex flex-col gap-5">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight">{headingtext}</h1>
+          <h1 className="text-2xl font-bold tracking-tight max-sm:text-lg">
+            {headingtext}
+          </h1>
           <div className="flex gap-3">
             <button
               className="bg-[#d7d8d9] text-black px-[10px] py-[10px] rounded-full"
@@ -52,7 +54,7 @@ const Restaurant = ({ data }) => {
         </div>
         <div
           ref={scrollContainerRef}
-          className="flex gap-5 overflow-x-hidden scrollbar-hide"
+          className="flex gap-5 overflow-x-hidden max-md:overflow-x-auto scroll-smooth"
           style={{ scrollBehavior: "smooth" }}
         >
           {restaurantdata.map((items, i) => (

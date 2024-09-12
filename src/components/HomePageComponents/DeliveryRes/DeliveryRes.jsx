@@ -10,19 +10,21 @@ const DeliveryRes = ({ data }) => {
 
   const navigate = useNavigate();
 
-  function handelChange(i) {
+  function handleChange(i) {
     const dataid = restaurantdata[i].info.id;
     navigate(`/restaurant/${dataid}`);
   }
 
   return (
     <div className="w-full flex justify-center mt-5">
-      <div className="w-[75%] grid grid-cols-4  gap-5 max-lg:grid-cols-3 max-md:grid-cols-2 ">
+      <div className="w-[75%] grid grid-cols-4 gap-5 max-lg:grid-cols-3 max-md:grid-cols-2">
         {restaurantdata.map((items, i) => (
           <div
-            className="w-full  hover:translate-y-0.5 hover:scale-[0.95] transition-all duration-200 cursor-pointer"
+            className="w-full hover:translate-y-1 hover:scale-95 transition-transform duration-300 cursor-pointer"
             key={i}
-            onClick={() => handelChange(i)}
+            onClick={() => handleChange(i)}
+            role="button"
+            aria-label={`Navigate to ${items.info.name}`}
           >
             <div className="w-full h-[182px] relative">
               <img
@@ -39,7 +41,7 @@ const DeliveryRes = ({ data }) => {
             <div className="pl-4 pr-2 pt-2">
               <h1 className="font-bold">{items.info.name}</h1>
               <div className="flex items-center gap-1">
-                <IoIosStar className="text-white bg-green-700 rounded-full p-[2px]" />
+                <IoIosStar className="text-white bg-green-700 rounded-full p-1" />
                 <span className="font-semibold">{items.info.avgRating}</span>
                 <LuDot className="mt-[2px]" />
                 <span className="font-bold">{items.info.sla.slaString}</span>
