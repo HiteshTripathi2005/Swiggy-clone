@@ -32,7 +32,7 @@ const Restaurant = ({ data }) => {
 
   return (
     <div className="w-full flex justify-center mt-5">
-      <div className="w-[75%] flex flex-col gap-5">
+      <div className="w-[75%] max-sm:w-[95%] flex flex-col gap-5">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold tracking-tight max-sm:text-lg">
             {headingtext}
@@ -59,7 +59,7 @@ const Restaurant = ({ data }) => {
         >
           {restaurantdata.map((items, i) => (
             <div
-              className="w-[273px] flex-shrink-0 hover:translate-y-0.5 hover:scale-[0.95] transition-all duration-200 cursor-pointer"
+              className="w-[273px] flex-shrink-0 hover:translate-y-1 hover:scale-95 transition-transform duration-300 cursor-pointer"
               key={i}
               onClick={() => handelChange(i)}
             >
