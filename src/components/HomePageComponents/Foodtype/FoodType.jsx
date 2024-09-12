@@ -20,7 +20,7 @@ const FoodType = ({ data }) => {
 
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="flex flex-col w-[75%] mt-5 overflow-hidden">
+      <div className="flex flex-col w-[75%] max-sm:w-[95%] mt-5 overflow-hidden">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold max-sm:text-lg">
             {(data?.data?.cards[0]?.card?.card?.id || "").replace(/_/g, " ")}?

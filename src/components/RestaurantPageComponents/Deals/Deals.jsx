@@ -7,8 +7,6 @@ const Deals = ({ data }) => {
   const offerData =
     data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers || [];
 
-  console.log(data);
-
   const scroll = (direction) => {
     const container = scrollContainerRef.current;
     if (container) {

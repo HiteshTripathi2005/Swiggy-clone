@@ -6,6 +6,8 @@ import LoadingPage from "./LoadingPage";
 import Navbar from "../components/Common/Navbar/Navbar";
 import Breadcrum from "../components/Common/breadcrum/Breadcrum";
 import Deals from "../components/RestaurantPageComponents/Deals/Deals";
+import RecommendedFood from "../components/RestaurantPageComponents/Menu/RecommendedFood";
+import CompleteMenu from "../components/RestaurantPageComponents/CompleteMenu/CompleteMenu";
 
 const RestaurantPage = () => {
   const [data, setData] = useState(null);
@@ -39,6 +41,8 @@ const RestaurantPage = () => {
       <Breadcrum />
       <RestaurantInfo data={data} />
       <Deals data={data} />
+      <RecommendedFood data={data} />
+      <CompleteMenu data={data} />
     </div>
   );
 };

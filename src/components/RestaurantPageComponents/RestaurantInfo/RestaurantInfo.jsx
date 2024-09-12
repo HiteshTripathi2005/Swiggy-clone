@@ -52,7 +52,8 @@ const RestaurantInfo = ({ data }) => {
         <div className="flex items-center mt-3 text-gray-600 border-t pt-3 text-xs sm:text-sm">
           <IoIosBicycle className="text-gray-600" />
           <span className="ml-2">
-            {mainData.feeDetails.message.replace(/<\/?b>/g, "")}
+            {mainData?.feeDetails?.message?.replace(/<\/?b>/g, "") ||
+              "Delivered & charged by the restaurant"}
           </span>
         </div>
       </div>
