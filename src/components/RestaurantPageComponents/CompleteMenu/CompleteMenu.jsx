@@ -1,47 +1,90 @@
-import AccordionGroup from "@mui/joy/AccordionGroup";
-import Accordion from "@mui/joy/Accordion";
-import AccordionDetails, {
-  accordionDetailsClasses,
-} from "@mui/joy/AccordionDetails";
-import AccordionSummary, {
-  accordionSummaryClasses,
-} from "@mui/joy/AccordionSummary";
+import React, { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { AccordionItem } from "./DroupDown";
+import MenuItem from "./MenuItem";
 
+// Main Component
 export default function CompleteMenu({ data }) {
   const mainData = data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
-  console.log(data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards);
+
+  // Filter out items with title "Top Picks"
+  const filterData = mainData.filter(
+    (item) => item.card.card.title && item.card.card.title !== "Top Picks"
+  );
+
+  const [openCategories, setOpenCategories] = useState({}); // Manage which category is open
+  const [openItems, setOpenItems] = useState({}); // Manage which item is open
+
+  const handleCategoryClick = (index) => {
+    setOpenCategories((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
+  const handleItemClick = (categoryIndex, itemIndex) => {
+    setOpenItems((prev) => ({
+      ...prev,
+      [`${categoryIndex}-${itemIndex}`]: !prev[`${categoryIndex}-${itemIndex}`],
+    }));
+  };
 
   return (
-    <AccordionGroup
-      variant="outlined"
-      transition="0.2s"
-      sx={(theme) => ({
-        maxWidth: 400,
-        borderRadius: "lg",
-        [`& .${accordionSummaryClasses.button}:hover`]: {
-          bgcolor: "transparent",
-        },
-        [`& .${accordionDetailsClasses.content}`]: {
-          boxShadow: `inset 0 1px ${theme.vars.palette.divider}`,
-          [`&.${accordionDetailsClasses.expanded}`]: {
-            paddingBlock: "0.75rem",
-          },
-        },
-      })}
-    >
-      {mainData.map((items, i) => (
-        <Accordion defaultExpanded={i === 0} key={i}>
-          <AccordionSummary>
-            {items?.card?.card?.title === "Top Picks"
-              ? null
-              : items?.card?.card?.title}
-          </AccordionSummary>
-          <AccordionDetails variant="soft">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </AccordionDetails>
-        </Accordion>
-      ))}
-    </AccordionGroup>
+    <div className="w-full flex justify-center mt-10">
+      <div className="w-[60%] border border-gray-300 rounded-lg max-md:w-[95%]">
+        {filterData.map((item, categoryIndex) => (
+          <div className="border-b border-gray-300" key={categoryIndex}>
+            <AccordionItem
+              title={item.card.card.title}
+              onClick={() => handleCategoryClick(categoryIndex)}
+              isOpen={openCategories[categoryIndex]}
+            >
+              {item.card.card.itemCards && item.card.card.itemCards.length > 0
+                ? item.card.card.itemCards.map((element, itemIndex) => (
+                    <MenuItem
+                      title={element.card.info.name}
+                      description={element.card.info.description}
+                      price={element.card.info.defaultPrice}
+                      rating={element.card.info.ratings.aggregatedRating.rating}
+                      ratingcount={
+                        element.card.info.ratings.aggregatedRating.ratingCountV2
+                      }
+                      img={element.card.info.imageId}
+                    />
+                  ))
+                : null}
+              {item.card.card.categories && item.card.card.categories.length > 0
+                ? item.card.card.categories.map((element, itemIndex) => (
+                    <AccordionItem
+                      key={itemIndex}
+                      title={element.title}
+                      onClick={() => handleItemClick(categoryIndex, itemIndex)}
+                      isOpen={openItems[`${categoryIndex}-${itemIndex}`]}
+                    >
+                      {element.itemCards && element.itemCards.length > 0
+                        ? element.itemCards.map((item, index) => (
+                            <MenuItem
+                              title={item.card.info.name}
+                              description={item.card.info.description}
+                              price={item.card.info.defaultPrice}
+                              rating={
+                                item.card.info.ratings.aggregatedRating.rating
+                              }
+                              ratingcount={
+                                item.card.info.ratings.aggregatedRating
+                                  .ratingCountV2
+                              }
+                              img={item.card.info.imageId}
+                            />
+                          ))
+                        : null}
+                    </AccordionItem>
+                  ))
+                : null}
+            </AccordionItem>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
