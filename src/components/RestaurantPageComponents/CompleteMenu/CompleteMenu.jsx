@@ -44,7 +44,10 @@ export default function CompleteMenu({ data }) {
                       key={itemIndex}
                       title={element.card.info.name}
                       description={element.card.info.description}
-                      price={element.card.info.defaultPrice}
+                      price={
+                        element.card.info.finalPrice ||
+                        element.card.info.defaultPrice
+                      }
                       rating={element.card.info.ratings.aggregatedRating.rating}
                       ratingcount={
                         element.card.info.ratings.aggregatedRating.ratingCountV2
@@ -67,7 +70,10 @@ export default function CompleteMenu({ data }) {
                               key={index}
                               title={item.card.info.name}
                               description={item.card.info.description}
-                              price={item.card.info.defaultPrice}
+                              price={
+                                item.card.info.finalPrice ||
+                                item.card.info.defaultPrice
+                              }
                               rating={
                                 item.card.info.ratings.aggregatedRating.rating
                               }

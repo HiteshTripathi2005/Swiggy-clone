@@ -12,7 +12,7 @@ const MenuItem = (data) => {
           <h3 className="font-semibold text-lg">{data.title}</h3>
         </div>
         <div className="flex justify-between items-center mt-2 md:mt-1">
-          <p className="font-bold text-lg">₹359</p>
+          <p className="font-bold text-lg">₹{data.price / 100}</p>
           <div className="md:hidden">
             <button className="px-4 py-1 bg-white text-green-600 border border-green-600 rounded font-semibold hover:bg-green-50">
               ADD
