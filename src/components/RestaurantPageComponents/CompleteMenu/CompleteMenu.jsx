@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import { AccordionItem } from "./DroupDown";
 import MenuItem from "./MenuItem";
 
@@ -42,6 +41,7 @@ export default function CompleteMenu({ data }) {
               {item.card.card.itemCards && item.card.card.itemCards.length > 0
                 ? item.card.card.itemCards.map((element, itemIndex) => (
                     <MenuItem
+                      key={itemIndex}
                       title={element.card.info.name}
                       description={element.card.info.description}
                       price={element.card.info.defaultPrice}
@@ -64,6 +64,7 @@ export default function CompleteMenu({ data }) {
                       {element.itemCards && element.itemCards.length > 0
                         ? element.itemCards.map((item, index) => (
                             <MenuItem
+                              key={index}
                               title={item.card.info.name}
                               description={item.card.info.description}
                               price={item.card.info.defaultPrice}
