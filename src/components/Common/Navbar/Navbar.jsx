@@ -28,25 +28,29 @@ const Navbar = () => {
         {/* Links for Larger Screens */}
         <div className="flex items-center gap-10 max-[1000px]:hidden">
           {navItems.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-2 hover:text-orange-500 cursor-pointer transition-all duration-200"
-            >
-              {item.icon}
-              <p className="text-xl font-suse text-center">{item.label}</p>
-            </div>
+            <NavLink to={"/making"}>
+              <div
+                key={index}
+                className="flex items-center gap-2 hover:text-orange-500 cursor-pointer transition-all duration-200"
+              >
+                {item.icon}
+                <p className="text-xl font-suse text-center">{item.label}</p>
+              </div>
+            </NavLink>
           ))}
         </div>
 
         {/* Icons for Smaller Screens */}
         <div className="flex items-center gap-5 min-[1000px]:hidden">
           {navIcons.map((icon, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-2 hover:text-orange-500 cursor-pointer transition-all duration-200"
-            >
-              {icon}
-            </div>
+            <NavLink to={"/making"}>
+              <div
+                key={index}
+                className="flex items-center gap-2 hover:text-orange-500 cursor-pointer transition-all duration-200"
+              >
+                {icon}
+              </div>
+            </NavLink>
           ))}
         </div>
       </div>
