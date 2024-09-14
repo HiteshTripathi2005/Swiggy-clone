@@ -6,8 +6,8 @@ import LoadingPage from "./LoadingPage";
 import Navbar from "../components/Common/Navbar/Navbar";
 import Breadcrum from "../components/Common/breadcrum/Breadcrum";
 import Deals from "../components/RestaurantPageComponents/Deals/Deals";
-import RecommendedFood from "../components/RestaurantPageComponents/Menu/RecommendedFood";
 import CompleteMenu from "../components/RestaurantPageComponents/CompleteMenu/CompleteMenu";
+import RecommendedFood from "../components/RestaurantPageComponents/recommended/RecommendedFood";
 
 const RestaurantPage = () => {
   const [data, setData] = useState(null);

@@ -1,6 +1,6 @@
 const FilterButtons = ({ data }) => {
-  const mainData = data?.data?.cards[3]?.card?.card?.facetList;
-  const headTitle = data?.data?.cards[2].card.card.title;
+  const mainData = data?.data?.cards[3]?.card?.card?.facetList || [];
+  const headTitle = data?.data?.cards[2]?.card?.card?.title || "Default Title";
 
   return (
     <div className="w-full flex justify-center mt-4 sm:mt-8">
@@ -11,14 +11,15 @@ const FilterButtons = ({ data }) => {
           </h1>
         </div>
         <div className="flex flex-wrap gap-2 sm:gap-3 overflow-x-auto pb-2">
-          {mainData.map((items, i) => (
-            <button
-              key={i}
-              className="border text-xs sm:text-sm font-semibold text-center border-gray-300 px-2 sm:px-4 py-1 sm:py-2 rounded-full cursor-pointer whitespace-nowrap transition-all duration-200 ease-in-out hover:bg-gray-100 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
-            >
-              {items?.facetInfo[0]?.label || ""}
-            </button>
-          ))}
+          {Array.isArray(mainData) &&
+            mainData.map((items, i) => (
+              <button
+                key={i}
+                className="border text-xs sm:text-sm font-semibold text-center border-gray-300 px-2 sm:px-4 py-1 sm:py-2 rounded-full cursor-pointer whitespace-nowrap transition-all duration-200 ease-in-out hover:bg-gray-100 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              >
+                {items?.facetInfo[0]?.label || ""}
+              </button>
+            ))}
         </div>
       </div>
     </div>

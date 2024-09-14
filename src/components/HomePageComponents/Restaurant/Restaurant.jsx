@@ -34,7 +34,7 @@ const Restaurant = ({ data }) => {
     <div className="w-full flex justify-center mt-5">
       <div className="w-[75%] max-sm:w-[95%] flex flex-col gap-5">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight max-sm:text-lg">
+          <h1 className="text-2xl font-bold tracking-tight max-sm:text-base">
             {headingtext}
           </h1>
           <div className="flex gap-3">
@@ -70,7 +70,7 @@ const Restaurant = ({ data }) => {
                   className="w-full h-full object-cover rounded-3xl"
                 />
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/100 to-transparent rounded-b-3xl"></div>
-                <h1 className="absolute bottom-2 left-2 font-bold text-lg text-white z-10">
+                <h1 className="absolute bottom-2 left-2 font-bold text-lg max-sm:text-base text-white z-10">
                   {items?.info?.aggregatedDiscountInfoV3?.header}{" "}
                   {items?.info?.aggregatedDiscountInfoV3?.subHeader}
                 </h1>

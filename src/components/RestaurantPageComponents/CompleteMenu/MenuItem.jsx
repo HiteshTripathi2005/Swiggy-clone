@@ -3,13 +3,15 @@ import { FaStar } from "react-icons/fa";
 
 const MenuItem = (data) => {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border-b border-gray-200">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border-b border-slate-600">
       <div className="flex-1 w-full md:w-auto">
         <div className="flex items-center space-x-2">
-          <div className="w-5 h-5 border border-green-500 flex items-center justify-center flex-shrink-0">
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <div className="w-5 h-5 max-sm:h-4 max-sm:w-4 border border-green-500 flex items-center justify-center flex-shrink-0">
+            <div className="w-3 h-3 max-sm:h-2 max-sm:w-2 bg-green-500 rounded-full"></div>
           </div>
-          <h3 className="font-semibold text-lg">{data.title}</h3>
+          <h3 className="font-semibold text-lg max-sm:text-sm max-sm:text-center max-sm:font-bold">
+            {data.title}
+          </h3>
         </div>
         <div className="flex justify-between items-center mt-2 md:mt-1">
           <p className="font-bold text-lg">₹{data.price / 100}</p>
@@ -24,7 +26,7 @@ const MenuItem = (data) => {
           <span className="text-green-600 font-bold">{data.rating}</span>
           <span className="text-gray-500 font-bold">({data.ratingcount})</span>
         </div>
-        <p className="text-base font-bold text-gray-600 mt-2">
+        <p className="text-base font-bold text-gray-600 mt-2 text-center">
           {data.description}
         </p>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosBicycle, IoIosPin, IoIosStar, IoIosTime } from "react-icons/io";
 
 const RestaurantInfo = ({ data }) => {
-  const mainData = data.data.cards[2].card.card.info;
+  const mainData = data?.data?.cards[2]?.card?.card?.info;
 
   return (
     <div className="w-full flex justify-center px-4 mt-4">

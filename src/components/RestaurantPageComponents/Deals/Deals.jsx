@@ -22,7 +22,7 @@ const Deals = ({ data }) => {
     <div className="w-full flex items-center justify-center px-4 mt-5">
       <div className="w-full max-w-[90%] md:max-w-[60%] overflow-hidden">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold font-playfair">Deals for you</h1>
+          <h1 className="text-2xl font-bold  max-sm:text-xl">Deals for you</h1>
           <div className="flex gap-3">
             <button
               aria-label="Scroll left"

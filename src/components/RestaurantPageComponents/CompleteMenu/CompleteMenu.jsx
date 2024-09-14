@@ -4,7 +4,8 @@ import MenuItem from "./MenuItem";
 
 // Main Component
 export default function CompleteMenu({ data }) {
-  const mainData = data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
+  const mainData =
+    data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
   // Filter out items with title "Top Picks"
   const filterData = mainData.filter(
@@ -46,7 +47,8 @@ export default function CompleteMenu({ data }) {
                       description={element.card.info.description}
                       price={
                         element.card.info.finalPrice ||
-                        element.card.info.defaultPrice
+                        element.card.info.defaultPrice ||
+                        element.card.info.price
                       }
                       rating={element.card.info.ratings.aggregatedRating.rating}
                       ratingcount={
