@@ -6,7 +6,10 @@ import { LuDot } from "react-icons/lu";
 const DeliveryRes = ({ data }) => {
   const restaurantdata =
     data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      ?.restaurants || [];
+      ?.restaurants ||
+    data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      ?.restaurants ||
+    [];
 
   const navigate = useNavigate();
 

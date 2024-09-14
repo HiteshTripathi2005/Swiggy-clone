@@ -1,25 +1,60 @@
+const CLOUDFLARE_WORKER_URL =
+  "https://swiggy-proxy.tripathihitesh580.workers.dev";
+
 export const FetchData = async () => {
-  const loca = JSON.parse(localStorage.getItem("selectedLocation"));
+  try {
+    // Get location from localStorage or use default place_id
+    const loca = JSON.parse(localStorage.getItem("selectedLocation")) || {
+      place_id: "ChIJwe1EZjDG5zsRaYxkjY_tpF0",
+    };
 
-  const latitude = loca ? loca.latitude : 19.0748;
-  const longitude = loca ? loca.longitude : 72.8856;
+    // Fetch the longitude and latitude using the place_id
+    const logresponse = await fetch(
+      `${CLOUDFLARE_WORKER_URL}/misc?place_id=${loca.place_id}`
+    );
 
-  const response = await fetch(
-    `https://swiggy-proxy.tripathihitesh580.workers.dev/restaurants?lat=${latitude}&lng=${longitude}`
-  );
+    const logresult = await logresponse.json();
+    const { lng = 72.8856, lat = 19.0748 } =
+      logresult.data[0]?.geometry.location || {};
 
-  const result = await response.json();
-  return result;
+    // Fetch restaurant data based on longitude and latitude
+    const response = await fetch(
+      `${CLOUDFLARE_WORKER_URL}/restaurants?lat=${lat}&lng=${lng}`
+    );
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching restaurant data:", error);
+    return null; // Handle error gracefully
+  }
 };
 
 export const FetchMenu = async (id) => {
-  const loca = JSON.parse(localStorage.getItem("selectedLocation"));
-  const latitude = loca ? loca.latitude : 19.0748;
-  const longitude = loca ? loca.longitude : 72.8856;
+  try {
+    // Reuse location logic from FetchData
+    const loca = JSON.parse(localStorage.getItem("selectedLocation")) || {
+      place_id: "ChIJS5QtSPnvNToRZQJKq4R-m5M",
+    };
 
-  const data = await fetch(
-    `https://swiggy-proxy.tripathihitesh580.workers.dev/menu?lat=${latitude}&lng=${longitude}&id=${id}`
-  );
-  const result = await data.json();
-  return result;
+    // Fetch longitude and latitude using the place_id
+    const logresponse = await fetch(
+      `${CLOUDFLARE_WORKER_URL}/misc?place_id=${loca.place_id}`
+    );
+
+    const logresult = await logresponse.json();
+    const { lng = 72.8856, lat = 19.0748 } =
+      logresult.data[0]?.geometry.location || {};
+
+    // Fetch menu data based on longitude, latitude, and restaurant id
+    const data = await fetch(
+      `${CLOUDFLARE_WORKER_URL}/menu?lat=${lat}&lng=${lng}&id=${id}`
+    );
+
+    const result = await data.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching menu data:", error);
+    return null; // Handle error gracefully
+  }
 };

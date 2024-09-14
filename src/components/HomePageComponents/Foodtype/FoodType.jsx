@@ -18,6 +18,10 @@ const FoodType = ({ data }) => {
     }
   };
 
+  if (!data || !imgData.length) {
+    return null;
+  }
+
   return (
     <div className="w-full flex justify-center items-center">
       <div className="flex flex-col w-[75%] max-sm:w-[95%] mt-5 overflow-hidden">

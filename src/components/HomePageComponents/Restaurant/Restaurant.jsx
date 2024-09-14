@@ -30,6 +30,10 @@ const Restaurant = ({ data }) => {
     navigate(`/restaurant/${dataid}`);
   }
 
+  if (!restaurantdata || restaurantdata.length === 0) {
+    return null;
+  }
+
   return (
     <div className="w-full flex justify-center mt-5">
       <div className="w-[75%] max-sm:w-[95%] flex flex-col gap-5">
