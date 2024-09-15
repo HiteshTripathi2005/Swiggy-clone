@@ -38,7 +38,7 @@ const RestaurantPage = () => {
   return (
     <div>
       <Navbar />
-      <Breadcrum />
+      <Breadcrum currentroute="RestaurantPage" />
       <RestaurantInfo data={data} />
       <Deals data={data} />
       <RecommendedFood data={data} />

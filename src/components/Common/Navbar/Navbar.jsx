@@ -28,7 +28,7 @@ const Navbar = () => {
         {/* Links for Larger Screens */}
         <div className="flex items-center gap-10 max-[1000px]:hidden">
           {navItems.map((item, index) => (
-            <NavLink to={"/making"} key={index}>
+            <NavLink to={item.page} key={index}>
               <div className="flex items-center gap-2 hover:text-orange-500 cursor-pointer transition-all duration-200">
                 {item.icon}
                 <p className="text-xl font-suse text-center">{item.label}</p>
@@ -39,10 +39,10 @@ const Navbar = () => {
 
         {/* Icons for Smaller Screens */}
         <div className="flex items-center gap-5 min-[1000px]:hidden">
-          {navIcons.map((icon, index) => (
-            <NavLink to={"/making"} key={index}>
+          {navIcons.map((item, index) => (
+            <NavLink to={item.page} key={index}>
               <div className="flex items-center gap-2 hover:text-orange-500 cursor-pointer transition-all duration-200">
-                {icon}
+                {item.icon}
               </div>
             </NavLink>
           ))}
@@ -53,12 +53,32 @@ const Navbar = () => {
 };
 
 const navItems = [
-  { label: "Swiggy Corporate", icon: <IoBagOutline className="text-xl" /> },
-  { label: "Search", icon: <IoIosSearch className="text-xl" /> },
-  { label: "Offers", icon: <BiSolidOffer className="text-xl" /> },
-  { label: "Help", icon: <IoHelpBuoy className="text-xl" /> },
-  { label: "Sign In", icon: <IoLogInOutline className="text-xl" /> },
-  { label: "Cart", icon: <PiShoppingCart className="text-xl" /> },
+  {
+    label: "Swiggy Corporate",
+    page: "/making",
+    icon: <IoBagOutline className="text-xl" />,
+  },
+  {
+    label: "Search",
+    page: "/making",
+    icon: <IoIosSearch className="text-xl" />,
+  },
+  {
+    label: "Offers",
+    page: "/making",
+    icon: <BiSolidOffer className="text-xl" />,
+  },
+  { label: "Help", page: "/making", icon: <IoHelpBuoy className="text-xl" /> },
+  {
+    label: "Sign In",
+    page: "/making",
+    icon: <IoLogInOutline className="text-xl" />,
+  },
+  {
+    label: "Cart",
+    page: "/cart",
+    icon: <PiShoppingCart className="text-xl" />,
+  },
 ];
 
 const navIcons = [

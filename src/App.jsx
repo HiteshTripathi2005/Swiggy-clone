@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import RestaurantPage from "./pages/RestaurantPage";
 import UnderDevelopment from "./pages/UnderDevelopment";
+import Cart from "./pages/Cart";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/making" element={<UnderDevelopment />} />
         <Route path="/restaurant/:id" element={<RestaurantPage />} />
       </Routes>

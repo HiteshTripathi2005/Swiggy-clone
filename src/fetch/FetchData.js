@@ -34,7 +34,7 @@ export const FetchMenu = async (id) => {
   try {
     // Reuse location logic from FetchData
     const loca = JSON.parse(localStorage.getItem("selectedLocation")) || {
-      place_id: "ChIJS5QtSPnvNToRZQJKq4R-m5M",
+      place_id: "ChIJwe1EZjDG5zsRaYxkjY_tpF0",
     };
 
     // Fetch longitude and latitude using the place_id

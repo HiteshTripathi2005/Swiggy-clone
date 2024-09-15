@@ -12,8 +12,8 @@ export default function CompleteMenu({ data }) {
     (item) => item.card.card.title && item.card.card.title !== "Top Picks"
   );
 
-  const [openCategories, setOpenCategories] = useState({}); // Manage which category is open
-  const [openItems, setOpenItems] = useState({}); // Manage which item is open
+  const [openCategories, setOpenCategories] = useState({});
+  const [openItems, setOpenItems] = useState({});
 
   const handleCategoryClick = (index) => {
     setOpenCategories((prev) => ({
@@ -29,70 +29,100 @@ export default function CompleteMenu({ data }) {
     }));
   };
 
+  const handelClick = (item) => {
+    const selected = localStorage.getItem("selected");
+    let selectedList = [];
+
+    try {
+      selectedList = selected ? JSON.parse(selected) : [];
+    } catch (e) {
+      console.error(
+        "Failed to parse localStorage data, resetting selected list.",
+        e
+      );
+    }
+
+    if (!selectedList.some((selectedItem) => selectedItem.id === item.id)) {
+      selectedList.push(item);
+      localStorage.setItem("selected", JSON.stringify(selectedList));
+    }
+  };
+
   return (
     <div className="w-full flex justify-center mt-10">
       <div className="w-[60%] border border-gray-300 rounded-lg max-md:w-[95%]">
-        {filterData.map((item, categoryIndex) => (
-          <div className="border-b border-gray-300" key={categoryIndex}>
-            <AccordionItem
-              title={item.card.card.title}
-              onClick={() => handleCategoryClick(categoryIndex)}
-              isOpen={openCategories[categoryIndex]}
-            >
-              {item.card.card.itemCards && item.card.card.itemCards.length > 0
-                ? item.card.card.itemCards.map((element, itemIndex) => (
-                    <MenuItem
-                      key={itemIndex}
-                      title={element.card.info.name}
-                      description={element.card.info.description}
-                      price={
-                        element.card.info.finalPrice ||
-                        element.card.info.defaultPrice ||
-                        element.card.info.price
-                      }
-                      rating={element.card.info.ratings.aggregatedRating.rating}
-                      ratingcount={
-                        element.card.info.ratings.aggregatedRating.ratingCountV2
-                      }
-                      img={element.card.info.imageId}
-                    />
-                  ))
-                : null}
-              {item.card.card.categories && item.card.card.categories.length > 0
-                ? item.card.card.categories.map((element, itemIndex) => (
-                    <AccordionItem
-                      key={itemIndex}
-                      title={element.title}
-                      onClick={() => handleItemClick(categoryIndex, itemIndex)}
-                      isOpen={openItems[`${categoryIndex}-${itemIndex}`]}
-                    >
-                      {element.itemCards && element.itemCards.length > 0
-                        ? element.itemCards.map((item, index) => (
-                            <MenuItem
-                              key={index}
-                              title={item.card.info.name}
-                              description={item.card.info.description}
-                              price={
-                                item.card.info.finalPrice ||
-                                item.card.info.defaultPrice
-                              }
-                              rating={
-                                item.card.info.ratings.aggregatedRating.rating
-                              }
-                              ratingcount={
-                                item.card.info.ratings.aggregatedRating
-                                  .ratingCountV2
-                              }
-                              img={item.card.info.imageId}
-                            />
-                          ))
-                        : null}
-                    </AccordionItem>
-                  ))
-                : null}
-            </AccordionItem>
-          </div>
-        ))}
+        {filterData.map((item, categoryIndex) => {
+          const { title, itemCards, categories } = item.card.card;
+
+          return (
+            <div className="border-b border-gray-300" key={categoryIndex}>
+              <AccordionItem
+                title={title}
+                onClick={() => handleCategoryClick(categoryIndex)}
+                isOpen={openCategories[categoryIndex]}
+              >
+                {itemCards?.length > 0 &&
+                  itemCards.map((element, itemIndex) => {
+                    const { info } = element.card;
+
+                    return (
+                      <MenuItem
+                        key={itemIndex}
+                        handelClick={() => handelClick(info)}
+                        title={info.name}
+                        description={info.description}
+                        price={
+                          info.finalPrice || info.defaultPrice || info.price
+                        }
+                        rating={info.ratings.aggregatedRating.rating || 0}
+                        ratingcount={
+                          info.ratings.aggregatedRating.ratingCountV2 || 0
+                        }
+                        img={info.imageId}
+                      />
+                    );
+                  })}
+                {categories?.length > 0 &&
+                  categories.map((element, itemIndex) => {
+                    const { title, itemCards } = element;
+
+                    return (
+                      <AccordionItem
+                        key={itemIndex}
+                        title={title}
+                        onClick={() =>
+                          handleItemClick(categoryIndex, itemIndex)
+                        }
+                        isOpen={openItems[`${categoryIndex}-${itemIndex}`]}
+                      >
+                        {itemCards?.length > 0 &&
+                          itemCards.map((item, index) => {
+                            const { info } = item.card;
+
+                            return (
+                              <MenuItem
+                                key={index}
+                                title={info.name}
+                                description={info.description}
+                                price={info.finalPrice || info.defaultPrice}
+                                rating={
+                                  info.ratings.aggregatedRating.rating || 0
+                                }
+                                ratingcount={
+                                  info.ratings.aggregatedRating.ratingCountV2 ||
+                                  0
+                                }
+                                img={info.imageId}
+                              />
+                            );
+                          })}
+                      </AccordionItem>
+                    );
+                  })}
+              </AccordionItem>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

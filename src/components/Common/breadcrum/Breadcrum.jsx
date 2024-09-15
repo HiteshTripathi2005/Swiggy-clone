@@ -2,7 +2,7 @@ import { Breadcrumbs, Typography } from "@mui/joy";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Breadcrum = () => {
+const Breadcrum = (props) => {
   return (
     <div className="w-full flex justify-center px-4 mt-4">
       <Breadcrumbs size="xs">
@@ -12,7 +12,7 @@ const Breadcrum = () => {
         >
           Home
         </NavLink>
-        <Typography>Restaurant</Typography>
+        <Typography className={"font-bold"}>{props.currentroute}</Typography>
       </Breadcrumbs>
     </div>
   );

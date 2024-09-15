@@ -1,7 +1,6 @@
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import Autocomplete from "@mui/joy/Autocomplete";
-import { redirect } from "react-router-dom";
 
 const CLOUDFLARE_WORKER_URL =
   "https://swiggy-proxy.tripathihitesh580.workers.dev";
