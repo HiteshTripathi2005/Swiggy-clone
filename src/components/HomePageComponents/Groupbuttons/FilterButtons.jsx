@@ -19,7 +19,7 @@ const FilterButtons = ({ data }) => {
         </div>
 
         {/* Filter Buttons Section */}
-        <div className="flex flex-wrap gap-2 sm:gap-3 overflow-x-auto pb-2">
+        <div className="flex flex-wrap gap-2 sm:gap-3 overflow-x-auto pt-3 pb-2">
           {mainData.length > 0 ? (
             mainData.map((item, i) => (
               <button

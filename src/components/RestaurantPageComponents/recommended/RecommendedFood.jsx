@@ -22,7 +22,7 @@ const RecommendedFood = ({ data }) => {
   };
 
   if (!mainData || mainData.length === 0) {
-    return <div className="text-center text-gray-500">No deals available</div>;
+    return null;
   }
 
   return (

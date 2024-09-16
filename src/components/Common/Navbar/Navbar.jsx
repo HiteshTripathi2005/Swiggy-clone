@@ -11,9 +11,9 @@ import SelectLocation from "../location/SelectLocation";
 const Navbar = () => {
   return (
     <div className="flex items-center justify-center w-full h-20 shadow-md">
-      <div className="w-[80%] flex items-center justify-between max-[1200px]:w-[95%]">
+      <div className="w-[90%] flex items-center justify-between lg:w-[95%]">
         {/* Logo and Location Section */}
-        <div className="flex items-center gap-12 max-[1000px]:gap-6 max-sm:ml-2">
+        <div className="flex items-center gap-12 lg:gap-6 sm:ml-2 max-[400px]:gap-5">
           <NavLink to={"/"}>
             <SwiggyLogo />
           </NavLink>
@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>
 
         {/* Links for Larger Screens */}
-        <div className="flex items-center gap-10 max-[1000px]:hidden">
+        <div className="hidden lg:flex items-center gap-10">
           {navItems.map((item, index) => (
             <NavLink to={item.page} key={index}>
               <div className="flex items-center gap-2 hover:text-orange-500 cursor-pointer transition-all duration-200">
@@ -38,7 +38,7 @@ const Navbar = () => {
         </div>
 
         {/* Icons for Smaller Screens */}
-        <div className="flex items-center gap-5 min-[1000px]:hidden">
+        <div className="flex items-center gap-5 lg:hidden ">
           {navIcons.map((item, index) => (
             <NavLink to={item.page} key={index}>
               <div className="flex items-center gap-2 hover:text-orange-500 cursor-pointer transition-all duration-200">
@@ -82,9 +82,18 @@ const navItems = [
 ];
 
 const navIcons = [
-  <IoIosSearch className="text-2xl" />,
-  <FaRegUserCircle className="text-2xl" />,
-  <PiShoppingCart className="text-2xl" />,
+  {
+    icon: <IoIosSearch className="text-2xl" aria-label="Search" />,
+    page: "/making",
+  },
+  {
+    icon: <FaRegUserCircle className="text-2xl" aria-label="User" />,
+    page: "/making",
+  },
+  {
+    icon: <PiShoppingCart className="text-2xl" aria-label="Cart" />,
+    page: "/cart",
+  },
 ];
 
 export default Navbar;
