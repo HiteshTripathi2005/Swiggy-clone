@@ -8,8 +8,6 @@ const RecommendedFood = ({ data }) => {
     data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
       ?.card?.carousel;
 
-  console.log(data);
-
   const scroll = (direction) => {
     const container = scrollContainerRef.current;
     if (container) {

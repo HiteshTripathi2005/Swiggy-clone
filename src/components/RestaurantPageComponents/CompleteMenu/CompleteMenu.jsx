@@ -102,6 +102,7 @@ export default function CompleteMenu({ data }) {
                             return (
                               <MenuItem
                                 key={index}
+                                handelClick={() => handelClick(info)}
                                 title={info.name}
                                 description={info.description}
                                 price={info.finalPrice || info.defaultPrice}
