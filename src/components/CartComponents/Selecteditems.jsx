@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaStar } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Breadcrum from "../Common/breadcrum/Breadcrum";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -152,9 +152,11 @@ const SelectedItems = () => {
           <span className="text-lg font-semibold">Total:</span>
           <span className="text-xl font-bold">₹{calculateTotalPrice()}</span>
         </div>
-        <button className="w-full bg-green-600 text-white py-3 rounded-full font-semibold text-lg hover:bg-green-700 transition duration-300">
-          Checkout
-        </button>
+        <Link to="/payment">
+          <button className="w-full bg-green-600 text-white py-3 rounded-full font-semibold text-lg hover:bg-green-700 transition duration-300">
+            Checkout
+          </button>
+        </Link>
       </div>
       <ToastContainer />
     </div>

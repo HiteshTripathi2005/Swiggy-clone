@@ -20,7 +20,7 @@ const DeliveryRes = ({ data }) => {
 
   return (
     <div className="w-full flex justify-center mt-5">
-      <div className="w-[75%] max-sm:w-[95%] grid grid-cols-4 gap-5 max-lg:grid-cols-3 max-md:grid-cols-2">
+      <div className="w-[75%] max-sm:w-[95%] grid grid-cols-4 gap-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-[360px]:grid-cols-1 max-[375px]:">
         {restaurantdata.map((items, i) => (
           <div
             className="w-full hover:translate-y-1 hover:scale-95 transition-transform duration-300 cursor-pointer"
